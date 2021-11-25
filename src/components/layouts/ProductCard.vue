@@ -3,7 +3,12 @@
         <div class="card-header">{{ title }} - {{ price }}$</div>
         <div class="banner" :style="`background-image: url(${imageUrl})`"></div>
         <div class="card-footer">
-            <button>Купить</button>
+            <button class="btn btn-default" @click="$emit('add-to-cart')" v-if="!inCart">
+                Добавить в корзину
+            </button>
+            <button class="btn btn-danger" @click="$emit('add-to-cart')" v-else>
+                Убрать из корзины
+            </button>
         </div>
     </div>
 </template>
@@ -31,7 +36,12 @@ export default {
         imageUrl:{
             type:String,
             default:''
+        },
+        inCart:{
+            type:Boolean,
+            default:false
         }
+        
     }
 }
 </script>
@@ -46,13 +56,13 @@ export default {
         border-radius: 12px;
         .banner{
             width: 100%;
-            height: 100%;
+            height: 93%;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
         &_footer{
-            // margin-top: 20px;
+            margin-top: 10px;
         }
     }   
 </style>

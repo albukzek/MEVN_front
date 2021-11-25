@@ -4,6 +4,9 @@
             LOGO
         </div>
         <div class="header_right">
+            <router-link to="/cart">
+                Cart {{cartCount}}
+            </router-link>
             <ul class="nav">
                 <li class="nav_link" v-for="(category, key) in categories" :key="key">
                     <router-link :to="`category/${category.id}`">{{category.title}}</router-link>
@@ -20,6 +23,10 @@ export default {
         categories:{
             type:Array,
             default: () => []
+        },
+        cartCount:{
+            type:Number,
+            default: 0
         }
     }
 }
